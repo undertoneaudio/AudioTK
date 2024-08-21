@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(AudioTK)
-SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
+SET(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMake)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -31,16 +31,17 @@ message(STATUS " Build SIMD: ${ENABLE_SIMD}")
 message(STATUS " Build shared libraries: ${ENABLE_SHARED_LIBRARIES}")
 message(STATUS " Build static libraries: ${ENABLE_STATIC_LIBRARIES}")
 message(STATUS " Build tests: ${ENABLE_TESTS}")
+message(STATUS " Enable GPL: ${ENABLE_GPL}")
 
 if(ENABLE_PYTHON)
-  add_subdirectory(${CMAKE_SOURCE_DIR}/3rdParty/pybind11)
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/pybind11)
 
-  LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/3rdParty/pybind11/tools)
+  LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/pybind11/tools)
   FIND_PACKAGE(PythonLibsNew REQUIRED)
 endif(ENABLE_PYTHON)
 
-include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/3rdParty/eigen)
-include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/3rdParty/gsl/include)
+include_directories(SYSTEM ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/eigen)
+include_directories(SYSTEM ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/gsl/include)
 
 if(ENABLE_SIMD)
   SET(USE_SIMD 0)
